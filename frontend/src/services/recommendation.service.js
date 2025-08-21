@@ -42,8 +42,20 @@ const getRecommendations = (formData = {}, products = []) => {
     return bestScore > 0 ? [bestProduct] : [];
   }
 
+  // MultipleProducts: retorna todos os produtos com score maior que 0, ordenados pelo score em ordem decrescente
   if (recommendationType === 'MultipleProducts') {
-    return [];
+    const productsWithScore = products
+      .map((product) => ({
+        product,
+        score:
+          countMatches(product.preferences, preferencesSet) +
+          countMatches(product.features, featuresSet),
+      }))
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    console.log('bestProducts', productsWithScore);
+    return productsWithScore.map((item) => item.product);
   }
 
   return [];
