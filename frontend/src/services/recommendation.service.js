@@ -38,7 +38,6 @@ const getRecommendations = (formData = {}, products = []) => {
       }
     }
 
-    console.log('bestProduct', bestProduct);
     return bestScore > 0 ? [bestProduct] : [];
   }
 
@@ -54,7 +53,6 @@ const getRecommendations = (formData = {}, products = []) => {
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score);
 
-    console.log('bestProducts', productsWithScore);
     return productsWithScore.map((item) => item.product);
   }
 

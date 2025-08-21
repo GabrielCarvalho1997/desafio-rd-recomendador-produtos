@@ -5,9 +5,9 @@ import RecommendationList from './components/RecommendationList/RecommendationLi
 function App() {
   const [recommendations, setRecommendations ] = useState([])
 
-  /**
-   * Dadas atualizações no formulário, necessário atualizar a lista de recomendações
-   */
+  const handleRecommendationsChange = (newRecommendations) => {
+    setRecommendations(newRecommendations);
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
@@ -19,7 +19,7 @@ function App() {
           </p>
         </div>
         <div>
-          <Form />
+          <Form updateRecommendations={handleRecommendationsChange} />
         </div>
         <div>
           <RecommendationList recommendations={recommendations} />
