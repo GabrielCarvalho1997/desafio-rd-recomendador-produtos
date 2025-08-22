@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
-  const [selected, setSelected] = useState(selectedType);
-
   const handleTypeChange = (type) => {
-    setSelected(type);
     onRecommendationTypeChange(type);
   };
 
@@ -22,7 +19,7 @@ function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
       <div className="space-y-3">
         <div
           className={`flex items-center p-3 rounded-lg border transition-all duration-200 cursor-pointer ${
-            selected === 'SingleProduct'
+            selectedType === 'SingleProduct'
               ? 'border-rd-primary-medium bg-rd-primary-medium bg-opacity-5'
               : 'border-rd-support-gray-200 hover:border-rd-primary-medium'
           }`}
@@ -33,22 +30,22 @@ function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
               type="radio"
               name="recommendationType"
               value="SingleProduct"
-              checked={selected === 'SingleProduct'}
+              checked={selectedType === 'SingleProduct'}
               onChange={() => handleTypeChange('SingleProduct')}
               className="sr-only"
             />
             <div className={`w-5 h-5 border-2 rounded-full transition-all duration-200 ${
-              selected === 'SingleProduct'
+              selectedType === 'SingleProduct'
                 ? 'border-rd-primary-medium'
                 : 'border-rd-support-gray-300'
             }`}>
-              {selected === 'SingleProduct' && (
+              {selectedType === 'SingleProduct' && (
                 <div className="w-2.5 h-2.5 bg-rd-primary-medium rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
               )}
             </div>
           </div>
           <span className={`ml-3 font-medium ${
-            selected === 'SingleProduct'
+            selectedType === 'SingleProduct'
               ? 'text-rd-primary-dark'
               : 'text-rd-support-gray-700'
           }`}>
@@ -58,7 +55,7 @@ function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
 
         <div
           className={`flex items-center p-3 rounded-lg border transition-all duration-200 cursor-pointer ${
-            selected === 'MultipleProducts'
+            selectedType === 'MultipleProducts'
               ? 'border-rd-primary-medium bg-rd-primary-medium bg-opacity-5'
               : 'border-rd-support-gray-200 hover:border-rd-primary-medium'
           }`}
@@ -69,22 +66,22 @@ function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
               type="radio"
               name="recommendationType"
               value="MultipleProducts"
-              checked={selected === 'MultipleProducts'}
+              checked={selectedType === 'MultipleProducts'}
               onChange={() => handleTypeChange('MultipleProducts')}
               className="sr-only"
             />
             <div className={`w-5 h-5 border-2 rounded-full transition-all duration-200 ${
-              selected === 'MultipleProducts'
+              selectedType === 'MultipleProducts'
                 ? 'border-rd-primary-medium'
                 : 'border-rd-support-gray-300'
             }`}>
-              {selected === 'MultipleProducts' && (
+              {selectedType === 'MultipleProducts' && (
                 <div className="w-2.5 h-2.5 bg-rd-primary-medium rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
               )}
             </div>
           </div>
           <span className={`ml-3 font-medium ${
-            selected === 'MultipleProducts'
+            selectedType === 'MultipleProducts'
               ? 'text-rd-primary-dark'
               : 'text-rd-support-gray-700'
           }`}>
