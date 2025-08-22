@@ -4,13 +4,13 @@ Este projeto é parte do teste técnico para a vaga de desenvolvedor front-end n
 
 ## Observações
 
-- Segui a base em JavaScript conforme fornecdio. Caso desejem ver uma versão em TypeScript posso migrar e tipar o projeto.
+- Segui a base em JavaScript conforme fornecido. Caso desejem ver uma versão em TypeScript posso migrar e tipar o projeto.
 
 - Adicionei alguns novos testes para aumentar a cobertura do projeto.
 
-- Melhorei o estilo com base nas cores que peguei no site da RD Station
+- Melhorei o estilo com base nas cores que peguei no site da RD Station.
 
-- Deixei de implementar um gerenciamento de estado global ou recursos mais avançados, pois preferi manter a base que já tinha projeto.
+- Deixei de implementar um gerenciamento de estado global ou recursos mais avançados, pois preferi manter a base que já tinha no projeto.
 
 ## Como rodar o projeto
 
