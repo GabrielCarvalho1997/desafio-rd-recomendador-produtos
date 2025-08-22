@@ -28,10 +28,10 @@ function Form({ updateRecommendations }) {
 
   return (
     <form
-      className="w-full space-y-6"
+      className="w-full space-y-4 sm:space-y-6"
       onSubmit={handleSubmit}
     >
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <Preferences
           preferences={preferences}
           onPreferenceChange={(selected) =>
@@ -52,7 +52,7 @@ function Form({ updateRecommendations }) {
         />
       </div>
 
-      <div className="pt-4 border-t border-rd-support-gray-200">
+      <div className="pt-3 sm:pt-4 border-t border-rd-support-gray-200">
         <SubmitButton text="Obter Recomendação" />
       </div>
     </form>
