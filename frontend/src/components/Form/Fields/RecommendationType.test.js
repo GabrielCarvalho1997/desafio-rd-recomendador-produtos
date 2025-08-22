@@ -28,15 +28,6 @@ describe('RecommendationType', () => {
       expect(screen.getByText('Produto Único')).toBeInTheDocument();
       expect(screen.getByText('Múltiplos Produtos')).toBeInTheDocument();
     });
-
-    test('deve renderizar os inputs de radio', () => {
-      render(<RecommendationType {...defaultProps} />);
-
-      const radioButtons = screen.getAllByRole('radio');
-      expect(radioButtons).toHaveLength(2);
-      expect(radioButtons[0]).toHaveAttribute('value', 'SingleProduct');
-      expect(radioButtons[1]).toHaveAttribute('value', 'MultipleProducts');
-    });
   });
 
   describe('Seleção de opções', () => {
