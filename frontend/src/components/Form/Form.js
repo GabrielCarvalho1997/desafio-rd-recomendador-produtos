@@ -1,6 +1,6 @@
 // Form.js
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import useForm from '../../hooks/useForm';
 import useProducts from '../../hooks/useProducts';
 import useRecommendations from '../../hooks/useRecommendations';
@@ -17,6 +17,20 @@ function Form({ updateRecommendations }) {
 
   const { getRecommendations } = useRecommendations(products);
 
+  // UseMemo para evitar cálculos desnecessários, isso seria melhor caso a lista de produtos fosse maior
+  const dataRecommendations = useMemo(() => {
+    // Só calcular se o formulário for válido
+    const hasPreferences = formData.selectedPreferences.length > 0;
+    const hasFeatures = formData.selectedFeatures.length > 0;
+    const hasRecommendationType = formData.selectedRecommendationType;
+
+    if ((hasPreferences || hasFeatures) && hasRecommendationType) {
+      return getRecommendations(formData);
+    }
+
+    return null;
+  }, [formData, getRecommendations]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -25,9 +39,7 @@ function Form({ updateRecommendations }) {
       return;
     }
 
-    const dataRecommendations = getRecommendations(formData);
-
-    if (updateRecommendations) {
+    if (dataRecommendations && updateRecommendations) {
       updateRecommendations(dataRecommendations);
       clearErrors();
     }
