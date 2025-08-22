@@ -1,14 +1,20 @@
 // Preferences.js
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from '../../shared/Checkbox';
 
 function Preferences({
   preferences,
   selectedPreferences = [],
   onPreferenceChange,
+  error,
 }) {
-  const [currentPreferences, setCurrentPreferences] = useState(selectedPreferences)
+  const [currentPreferences, setCurrentPreferences] = useState(selectedPreferences);
+
+  // Sincronizar com as props quando mudarem
+  useEffect(() => {
+    setCurrentPreferences(selectedPreferences);
+  }, [selectedPreferences]);
 
   const handlePreferenceChange = (preference) => {
     const updatedPreferences = currentPreferences.includes(preference)
@@ -46,6 +52,12 @@ function Preferences({
           </div>
         ))}
       </div>
+
+      {error && (
+        <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-red-600 text-sm">{error}</p>
+        </div>
+      )}
     </div>
   );
 }

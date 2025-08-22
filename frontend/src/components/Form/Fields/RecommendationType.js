@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
+function RecommendationType({ onRecommendationTypeChange, selectedType = '', error }) {
   const handleTypeChange = (type) => {
     onRecommendationTypeChange(type);
   };
@@ -89,6 +89,12 @@ function RecommendationType({ onRecommendationTypeChange, selectedType = '' }) {
           </span>
         </div>
       </div>
+
+      {error && (
+        <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-red-600 text-sm">{error}</p>
+        </div>
+      )}
     </div>
   );
 }

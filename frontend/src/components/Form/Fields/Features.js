@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from '../../shared/Checkbox';
 
-function Features({ features, selectedFeatures = [], onFeatureChange }) {
-  const [currentFeatures, setCurrentFeatures] = useState(selectedFeatures)
+function Features({ features, selectedFeatures = [], onFeatureChange, error }) {
+  const [currentFeatures, setCurrentFeatures] = useState(selectedFeatures);
+
+  // Sincronizar com as props quando mudarem
+  useEffect(() => {
+    setCurrentFeatures(selectedFeatures);
+  }, [selectedFeatures]);
 
   const handleFeatureChange = (feature) => {
     const updatedFeatures = currentFeatures.includes(feature)
@@ -40,6 +45,12 @@ function Features({ features, selectedFeatures = [], onFeatureChange }) {
           </div>
         ))}
       </div>
+
+      {error && (
+        <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-red-600 text-sm">{error}</p>
+        </div>
+      )}
     </div>
   );
 }

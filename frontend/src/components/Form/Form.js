@@ -9,7 +9,7 @@ import { SubmitButton } from './SubmitButton';
 
 function Form({ updateRecommendations }) {
   const { preferences, features, products } = useProducts();
-  const { formData, handleChange } = useForm({
+  const { formData, handleChange, errors, validateForm, clearErrors } = useForm({
     selectedPreferences: [],
     selectedFeatures: [],
     selectedRecommendationType: '',
@@ -19,10 +19,17 @@ function Form({ updateRecommendations }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validar formulário antes de seguir
+    if (!validateForm()) {
+      return;
+    }
+
     const dataRecommendations = getRecommendations(formData);
 
     if (updateRecommendations) {
       updateRecommendations(dataRecommendations);
+      clearErrors();
     }
   };
 
@@ -34,21 +41,28 @@ function Form({ updateRecommendations }) {
       <div className="space-y-4 sm:space-y-6">
         <Preferences
           preferences={preferences}
+          selectedPreferences={formData.selectedPreferences}
           onPreferenceChange={(selected) =>
             handleChange('selectedPreferences', selected)
           }
+          error={errors.preferences}
         />
+
         <Features
           features={features}
+          selectedFeatures={formData.selectedFeatures}
           onFeatureChange={(selected) =>
             handleChange('selectedFeatures', selected)
           }
+          error={errors.features}
         />
+
         <RecommendationType
           selectedType={formData.selectedRecommendationType}
           onRecommendationTypeChange={(selected) =>
             handleChange('selectedRecommendationType', selected)
           }
+          error={errors.recommendationType}
         />
       </div>
 
