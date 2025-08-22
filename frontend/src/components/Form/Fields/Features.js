@@ -14,22 +14,32 @@ function Features({ features, selectedFeatures = [], onFeatureChange }) {
   };
 
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Funcionalidades:</h2>
-      <ul>
+    <div className="bg-rd-support-white rounded-lg p-6 border border-rd-support-gray-200 shadow-sm">
+      <div className="flex items-center mb-4">
+        <div className="w-2 h-6 bg-rd-primary-light rounded-full mr-3"></div>
+        <h3 className="text-xl font-semibold text-rd-primary-dark">
+          Funcionalidades
+        </h3>
+      </div>
+      <p className="text-rd-support-gray-600 mb-4 text-sm">
+        Escolha as funcionalidades que você precisa
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {features.map((feature, index) => (
-          <li key={index} className="mb-2">
+          <div key={index} className="flex items-center">
             <Checkbox
               value={feature}
               checked={currentFeatures.includes(feature)}
               onChange={() => handleFeatureChange(feature)}
-              className="text-green-500"
+              className="text-rd-primary-light"
             >
-              {feature}
+              <span className="text-rd-support-gray-700 font-medium">
+                {feature}
+              </span>
             </Checkbox>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
